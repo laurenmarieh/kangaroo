@@ -1,0 +1,26 @@
+{
+  "name": "kangaroo",
+  "version": "1.0.0",
+  "description": "Immigrant Hub",
+  "main": "index.js",
+  "dependencies": {
+    "@google-cloud/translate": "^2.1.2",
+    "express": "^4.16.4",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laurenmarieh/kangaroo.git"
+  },
+  "author": "Team Party Corgis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/laurenmarieh/kangaroo/issues"
+  },
+  "homepage": "https://github.com/laurenmarieh/kangaroo#readme"
+}
