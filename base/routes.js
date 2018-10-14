@@ -59,6 +59,29 @@ router.get('/getExperiences', (req, res) => {
     });
 });
 
+router.post('/login', (req, res) => {
+  db.collection("users").find({'email' : req.body.email}).toArray(function(err, result) {
+    let loginResult = {token: '', error: ''};
+    if (err){
+      throw err;
+      
+      res.send(loginResult);
+    }
+    else{
+      console.log(result);
+      if (result.length === 0) {
+        loginResult.error = "Your username or password is incorrect. Please try again or register an account";
+        res.send(loginResult);
+      }
+      else{
+        loginResult.token = result[0]._id;
+        res.send(loginResult);
+      }
+    
+    };
+  });
+});
+
 //enable pre-flight
 router.options("*", cors(options));
 
