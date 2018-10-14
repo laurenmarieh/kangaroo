@@ -3,6 +3,7 @@ const router = express.Router();
 const cors = require('cors');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
+var ObjectId = require('mongodb').ObjectID;
 
 var db; 
 
@@ -68,7 +69,6 @@ router.post('/login', (req, res) => {
       res.send(loginResult);
     }
     else{
-      console.log(result);
       if (result.length === 0) {
         loginResult.error = "Your username or password is incorrect. Please try again or register an account";
         res.send(loginResult);
@@ -77,8 +77,18 @@ router.post('/login', (req, res) => {
         loginResult.token = result[0]._id;
         res.send(loginResult);
       }
-    
     };
+  });
+});
+
+router.post('/getUser', (req, res) => {
+  console.log(req.body);
+  db.collection("users").find({'_id' : new ObjectId(req.body.id)}).toArray(function(err, result) {
+    console.log(result);
+    if (err){
+      throw err;
+    }
+    res.send(result); 
   });
 });
 
