@@ -59,6 +59,24 @@ router.get('/getExperiences', (req, res) => {
     });
 });
 
+router.post('/addStory', (req, res) => {
+  // Insert JSON straight into MongoDB
+  db.collection('stories').insertOne(req.body, function (err, result) {
+      if (err)
+          throw err;
+      else
+        res.send('Success!!');
+  });
+});
+
+router.get('/getStories', (req, res) => {
+  db.collection("stories").find({}).toArray(function(err, result) {
+    if (err)
+     throw err;
+     res.send(result);
+    });
+});
+
 router.post('/login', (req, res) => {
   db.collection("users").find({'email' : req.body.email}).toArray(function(err, result) {
     let loginResult = {token: '', error: ''};
