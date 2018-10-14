@@ -1,0 +1,1 @@
+mongoimport -h ds131313.mlab.com:31313 -d wallaby -c experiences -u bruce -p partyCorgi1 --file <input file>
