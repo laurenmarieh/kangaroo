@@ -110,6 +110,16 @@ router.post('/getUser', (req, res) => {
   });
 });
 
+router.post('/register', (req, res) => {
+  // Insert JSON straight into MongoDB
+  db.collection('users').insertOne(req.body, function (err, result) {
+      if (err)
+          throw err;
+      else
+        res.send('Success!!');
+  });
+});
+
 //enable pre-flight
 router.options("*", cors(options));
 
